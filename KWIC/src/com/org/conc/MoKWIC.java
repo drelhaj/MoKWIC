@@ -1,5 +1,6 @@
 package com.org.conc;
 
+import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.nio.ByteBuffer;
@@ -13,7 +14,12 @@ import java.util.ArrayList;
 import java.util.Formatter;
 import java.util.List;
 import java.nio.file.Path;
-
+/**
+ * The system takes text file as input, and shows a keyword in context aligned with 
+ * a user defined number of words to appear on the left and right side of the input keyword
+ * @author elhaj
+ *
+ */
 public class MoKWIC {
 		
 static String text = "";
@@ -25,40 +31,68 @@ static int fileWordsCount = 0;
 	public static void main (String [] args) throws Exception {
 		
 		System.out.println("Welcome to MoKWIC");
-		 if ((args.length < 4)) {
-			 System.out.println("Incomplete arguments !!!\nTo run MoKWIC: \"Path\" \"Keyword\" \"WordsToTheLeft\" \"WordsToTheRight\"");
+		if (args[0].equalsIgnoreCase("help")){
+				 System.out.println("To run MoKWIC: \"InputFile\" \"Keyword\" \"WordsToTheLeft\" \"WordsToTheRight\" \"OutputFile\"\n"+
+						 "Example: Input.txt yesterday 10 10 Output.txt \n"+
+						 "InputFile could be any text file; Keyword the term you want to search for (case insensitive);\n"+
+						 "Words to the left and right are number of words you would like to see before and after the input keyowrd;\n"+
+						 "OutputFile could be any text file.");		 
+		System.exit(0);
+		}
+		if (((args.length < 4 || args.length > 5 ) && !args[0].equalsIgnoreCase("help"))) {
+			 System.out.println("Wrong number of arguments !!!\nTo run MoKWIC: \"Path\" \"Keyword\" \"WordsToTheLeft\" \"WordsToTheRight\" \"OutputFile\""+
+		 "Example: Input.txt yesterday 10 10 Output.txt\n"+
+					 "If no Output file provdied system will print to console by default!");
+			 System.exit(0);
 		 }
 	
 		 
 		 
 		final float startTime = System.nanoTime();
-		int printMethod = Integer.parseInt(args[4]); //when 1 prints output to file. 0: prints output toconsole 
 		
 /*        String search = "there";
         Path path = Paths.get("test/testBigFile.txt");
         int wordsLeft = 10;
         int wordsRight = 10;*/
         //new MoKWIC().readFile(path, search, wordsLeft, wordsRight);
-        new MoKWIC().readFile(Paths.get(args[0].toString()), args[1], Integer.parseInt(args[2]), Integer.parseInt(args[3]), Integer.parseInt(args[4]));
-        
+		
+		
+		if(!new File(args[0]).exists()){
+			System.out.println("Input file doesn't exist!!");
+			System.exit(0);
+
+		}
+		
+		if(args.length > 4 && args[4].trim().length()<1){
+			System.out.println("Output file not valid!");
+			System.exit(0);
+
+		}
+		
+		
+			
+		if(args.length == 4){
+        new MoKWIC().readFile(Paths.get(args[0].toString()), args[1], Integer.parseInt(args[2]), Integer.parseInt(args[3]), "");
+		}
+		else{
+			new MoKWIC().readFile(Paths.get(args[0].toString()), args[1], Integer.parseInt(args[2]), Integer.parseInt(args[3]), args[4]);	
+		}
 		final float duration = (System.nanoTime() - startTime)/1000000000;
 		System.out.println("\n");
         
 		System.out.println("==================================================================");
 		customFormat("###,###.###", fileWordsCount);
-		System.out.format("Found %d matches"+ " of the word << %s >> in "+ "%.4f, seconds", matchesCount, args[1].trim(), duration, printMethod);
+		System.out.format("Found %d matches"+ " of the word << %s >> in "+ "%.4f, seconds", matchesCount, args[1].trim(), duration);
 		
 		 }
 	
-	
-	@SuppressWarnings("resource")
-	private void readFile(Path path, String searchString, int wordsLeft, int wordsRight, int printMethod)
+		private void readFile(Path path, String searchString, int wordsLeft, int wordsRight, String outputFile)
 			throws IOException {
+		    
+		Formatter fmtFile = null;
 		
-		
-		//Formatter fmtCon = new Formatter(System.out);
-	    Formatter fmtFile;
-	    fmtFile = new Formatter(new FileOutputStream("test.txt"));
+		if(outputFile.length()>0)
+	    fmtFile = new Formatter(new FileOutputStream(outputFile));
 	    
 		FileChannel fileChannel = FileChannel.open(path);
 		
@@ -119,7 +153,7 @@ static int fileWordsCount = 0;
                   	}
                      int gapFormat = wordsLeft*10; 
                      
-                     if(printMethod == 0){
+                     if(outputFile.length()<1){
                      System.out.println("\n");
                      System.out.format("%"+gapFormat+"s %s %s", leftHandSide.trim(), " << " + words[i] + " >> ", rightHandSide.trim());
                      }
@@ -138,7 +172,8 @@ static int fileWordsCount = 0;
 		}
   		fileChannel.close();
 
-  		
+  	
+	
 	}
 			
 
