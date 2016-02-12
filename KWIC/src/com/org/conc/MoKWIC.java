@@ -18,7 +18,8 @@ import java.nio.file.Path;
  * The system takes text file as input, and shows a keyword in context aligned with 
  * a user defined number of words to appear on the left and right side of the input keyword
  * @author elhaj
- *
+ * @url Tool web page: http://drelhaj.github.io/MoKWIC/
+ * @url Available on GitHub: https://github.com/drelhaj/MoKWIC
  */
 public class MoKWIC {
 		
