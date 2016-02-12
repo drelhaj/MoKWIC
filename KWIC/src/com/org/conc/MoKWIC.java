@@ -60,12 +60,18 @@ static int fileWordsCount = 0;
 			System.exit(0);
 		}
 		
-		//Make sure output file is valid (further validation could be helful here e.g. Linux vs Windows naming the use of special characters and reserved names)
+		//Make sure output file is valid (further validation could be helpful here e.g. Linux vs Windows naming the use of special characters and reserved names)
 		if(args.length > 4 && args[4].trim().length()<1){
 			System.out.println("Output file not valid!");
 			System.exit(0);
 		}
 		
+		
+		//Make sure output file is valid (further validation could be helful here e.g. Linux vs Windows naming the use of special characters and reserved names)
+		if(!isParsable(args[2]) || !isParsable(args[3])){
+			System.out.println("Invalid number of words!");
+			System.exit(0);
+		}
 		
 	//check number of arguments as the output file is optional the method can be called with the output file length = 0 and output will be printed on console.		
 		if(args.length == 4){
@@ -221,6 +227,18 @@ static int fileWordsCount = 0;
 		      String output = myFormatter.format(value);
 		      System.out.println("Input text number of words: " + output);
 		   }
+
 	   
+
+		//To check wether integer window size inserter by the user are parsable to integer
+		public static boolean isParsable(String input){
+		    boolean parsable = true;
+		    try{
+		        Integer.parseInt(input);
+		    }catch(NumberFormatException e){
+		        parsable = false;
+		    }
+		    return parsable;
+		}
 
 }
