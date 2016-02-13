@@ -27,12 +27,9 @@ static String text = "";
 static int matchesCount = 0;
 static int fileWordsCount = 0;
 
-
-
 	public static void main (String [] args) throws Exception {
 
 		//noting the sytem start time to calculate running time
-		final float startTime = System.nanoTime();
 
 		
 		//Welcome and help
@@ -73,6 +70,12 @@ static int fileWordsCount = 0;
 			System.out.println("Invalid number of words!");
 			System.exit(0);
 		}
+		else{
+			if(Integer.parseInt(args[2]) <= 0 || Integer.parseInt(args[3]) <= 0){
+				System.out.println("Number of words can't be less than 1");
+				System.exit(0);
+			}
+		}
 		
 	//check number of arguments as the output file is optional the method can be called with the output file length = 0 and output will be printed on console.		
 		if(args.length == 4){
@@ -83,22 +86,15 @@ static int fileWordsCount = 0;
 		}
 		
 		
-		//calculate running time in seconds
-		final float duration = (System.nanoTime() - startTime)/1000000000;
-		System.out.println("\n");
-        
-		//display output to the user on console (will also be printed to Outputfile if it exists
-		System.out.println("==================================================================");
-		customFormat("###,###.###", fileWordsCount);
-		System.out.format("Found %d matches"+ " of the word << %s >> in "+ "%.4f, seconds", matchesCount, args[1].trim(), duration);
-		
 		 }
 	
 
 	
 	// This is the Kwic main method. Reads a file and it's window size and provide output either on console or output file provided by the user.
-	private void readFile(Path path, String searchString, int wordsLeft, int wordsRight, String outputFile)
+	void readFile(Path path, String searchString, int wordsLeft, int wordsRight, String outputFile)
 			throws IOException {
+				final float startTime = System.nanoTime();
+
 		
 		//need to write to file and preserving formatting (i.e. aligning keyword in different concordance sentences).
 		Formatter fmtFile = null;
@@ -199,7 +195,17 @@ static int fileWordsCount = 0;
 		//close channel when no more text (bytes) remaining in the buffer.
   		fileChannel.close();
 
-  	
+		//calculate running time in seconds
+		final float duration = (System.nanoTime() - startTime)/1000000000;
+		System.out.println("\n");
+        
+		//display output to the user on console (will also be printed to Outputfile if it exists
+		System.out.println("==================================================================");
+		customFormat("###,###.###", fileWordsCount);
+		System.out.format("Found %d matches"+ " of the word << %s >> in "+ "%.4f, seconds", matchesCount, searchString.trim(), duration);
+		System.out.println("\n==================================================================");
+
+	
 	
 	}
 			
