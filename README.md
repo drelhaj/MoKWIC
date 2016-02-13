@@ -20,7 +20,8 @@ Words to the left and right are number of words you would like to see before and
 OutputFile could be any text file.
 
 # Interface
-MoKWIC is an open source command-line application, which can be easily integrated into a GUI.
+MoKWIC is an open source command-line application to make it easy to integrate with other systems.
+The system comes also in a simple GUI interface, which is implemented in a seprate file (MoKWICgui)
 
 # Input/Output file format
 MoKWIC works with UTF-8 file format for both input and output.
