@@ -11,7 +11,10 @@ The system is language independent and works with English and other languages in
 * The system runs in a UTF-8 environment by default and was confirmed to work with Linux, however Windows users: by setting the (Windows) environment variable JAVA_TOOL_OPTIONS to -Dfile.encoding=UTF8, the (Java) System property will be set automatically every time a JVM is started. 
 
 # Execution
-Running MoKWIC is fairly simple.
+* Non technical users can go ahead and double click the MoKWIC.jar file in the runnable_jar folder
+You can also run the GUI interface by running the MoKWICgui java class/file.
+
+* Running MoKWIC from command line is fairly simple.
 For further information you can use the help command.
 
 To run MoKWIC you need InputFile Keyword WordsToTheLeft WordsToTheRight OutputFile (Optional):
