@@ -194,7 +194,7 @@ public class MoKWICgui {
 			highlight();
 			}
 		});
-		btnNewButton.setBounds(487, 45, 131, 23);
+		btnNewButton.setBounds(487, 45, 147, 23);
 		frmMokwic.getContentPane().add(btnNewButton);
 		
 		JLabel lblWords = new JLabel("#Left");
@@ -219,7 +219,7 @@ public class MoKWICgui {
 				chosenFileTF.setText("");
 			}
 		});
-		btnClear.setBounds(628, 44, 89, 23);
+		btnClear.setBounds(644, 44, 89, 23);
 		frmMokwic.getContentPane().add(btnClear);
 		
 		JLabel imgLabel = new JLabel("");
