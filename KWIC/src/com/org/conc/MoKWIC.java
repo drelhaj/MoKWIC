@@ -106,6 +106,8 @@ static int fileWordsCount = 0;
 		//create a file channel and buffer. Here I use Non-blocking I/O libraries needed when dealing with intensive input/output.
 		//Conventional read file methods (e.g. StringBuffer, InputStream, Scanner) may overload the system when dealing with large files as the 
 		//buffer gets full quickly reducing efficiency and taking long time to process data, which may also lead to a java heap space error.
+		//NOTE: setting the buffer to larger number (e.g. 10000) will fix the problem of in complete lines (those lines with matches at the beginning or ending of the buffer text) 
+		//but this may affect performance with large files (i.e. >10,000,000 words)
 		FileChannel fileChannel = FileChannel.open(path);
 		ByteBuffer buffer = ByteBuffer.allocate(3000);
 
@@ -196,7 +198,7 @@ static int fileWordsCount = 0;
   		fileChannel.close();
 
 		//calculate running time in seconds
-		final float duration = (System.nanoTime() - startTime)/1000000000;
+		float duration = (System.nanoTime() - startTime)/1000000000;
 		System.out.println("\n");
         
 		//display output to the user on console (will also be printed to Outputfile if it exists
@@ -204,7 +206,10 @@ static int fileWordsCount = 0;
 		customFormat("###,###.###", fileWordsCount);
 		System.out.format("Found %d matches"+ " of the word << %s >> in "+ "%.4f, seconds", matchesCount, searchString.trim(), duration);
 		System.out.println("\n==================================================================");
-
+		matchesCount = 0;
+		duration = 0f;
+		searchString = "";
+		fileWordsCount = 0;
 	
 	
 	}
