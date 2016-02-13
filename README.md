@@ -17,11 +17,11 @@ You can also run the GUI interface by running the MoKWICgui java class/file.
 * Running MoKWIC from command line is fairly simple.
 For further information you can use the help command.
 
-To run MoKWIC you need InputFile Keyword WordsToTheLeft WordsToTheRight OutputFile (Optional):
-Example: Input.txt yesterday 10 10 Output.txt
-InputFile could be any text file; Keyword the term you want to search for (case insensitive);
-Words to the left and right are number of words you would like to see before and after the input keyowrd;
-OutputFile could be any text file.
+To run MoKWIC you need InputFile, Keyword, Number of Words to the left, Number of Words to the right, OutputFile (Optional):
+* Example: Input.txt yesterday 10 10 Output.txt
+* InputFile could be any text file; Keyword the term you want to search for (case insensitive);
+* Words to the left and right are number of words you would like to see before and after the input keyowrd;
+* OutputFile could be any text file.
 
 # Interface
 MoKWIC is an open source command-line application to make it easy to integrate with other systems.
