@@ -8,6 +8,7 @@ The system is language independent and works with English and other languages in
 * Requires java to run, the system was not tested on Java 8 but considering the library used it should run smoothly.
 * Has been tested on both Linux and Windows and run smoothly on both.
 * Has been tested on large files (c7 million words) with a processing time not exceeding 4 seconds.
+* The system runs in a UTF-8 environment by default and was confirmed to work with Linux, however Windows users: by setting the (Windows) environment variable JAVA_TOOL_OPTIONS to -Dfile.encoding=UTF8, the (Java) System property will be set automatically every time a JVM is started. 
 
 # Execution
 Running MoKWIC is fairly simple.
