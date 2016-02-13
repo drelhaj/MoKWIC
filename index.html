@@ -42,13 +42,18 @@ The system is language independent and works with English and other languages in
 <li>Requires java to run, the system was not tested on Java 8 but considering the library used it should run smoothly.</li>
 <li>Has been tested on both Linux and Windows and run smoothly on both.</li>
 <li>Has been tested on large files (c7 million words) with a processing time not exceeding 4 seconds.</li>
+<li>The system runs in a UTF-8 environment by default and was confirmed to work with Linux, however Windows users: by setting the (Windows) environment variable JAVA_TOOL_OPTIONS to -Dfile.encoding=UTF8, the (Java) System property will be set automatically every time a JVM is started. </li>
 </ul>
 
 <h1>
 <a id="execution" class="anchor" href="#execution" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Execution</h1>
 
-<p>Running MoKWIC is fairly simple.
-For further information you can use the help command.</p>
+<ul>
+<li><p>Non technical users can go ahead and double click the MoKWIC.jar file in the runnable_jar folder
+You can also run the GUI interface by running the MoKWICgui java class/file.</p></li>
+<li><p>Running MoKWIC from command line is fairly simple.
+For further information you can use the help command.</p></li>
+</ul>
 
 <p>To run MoKWIC you need InputFile Keyword WordsToTheLeft WordsToTheRight OutputFile (Optional):
 Example: Input.txt yesterday 10 10 Output.txt
@@ -59,7 +64,8 @@ OutputFile could be any text file.</p>
 <h1>
 <a id="interface" class="anchor" href="#interface" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Interface</h1>
 
-<p>MoKWIC is an open source command-line application, which can be easily integrated into a GUI.</p>
+<p>MoKWIC is an open source command-line application to make it easy to integrate with other systems.
+The system comes also in a simple GUI interface, which is implemented in a seprate file (MoKWICgui)</p>
 
 <h1>
 <a id="inputoutput-file-format" class="anchor" href="#inputoutput-file-format" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Input/Output file format</h1>
