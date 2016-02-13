@@ -23,6 +23,7 @@ import java.io.File;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.io.PrintStream;
+import java.nio.charset.Charset;
 import java.nio.file.Paths;
 import java.awt.event.ActionEvent;
 import javax.swing.JLabel;
@@ -44,6 +45,10 @@ public class MoKWICgui {
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
+		
+		Charset.defaultCharset();
+        System.setProperty("file.encoding", "UTF-8");
+        
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -132,7 +137,8 @@ public class MoKWICgui {
 						//make sure file exists before calling the MoKWIC 
 					if(new File(chosenFileTF.getText()).exists()){								
 					redirectSystemStreams(); //to display console output on the textArea
-					new MoKWIC().readFile(Paths.get(chosenFileTF.getText()), keywordTF.getText(), Integer.parseInt(leftWordsTF.getText()), Integer.parseInt(rightWordsTF.getText()), "");
+					 String keyw = new String(keywordTF.getText().getBytes(), "UTF-8");//send UTF-8 query 
+					new MoKWIC().readFile(Paths.get(chosenFileTF.getText()), keyw, Integer.parseInt(leftWordsTF.getText()), Integer.parseInt(rightWordsTF.getText()), "");
 					}
 					else
 					{

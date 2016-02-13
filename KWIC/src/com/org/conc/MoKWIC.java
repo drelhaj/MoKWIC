@@ -29,7 +29,9 @@ static int fileWordsCount = 0;
 
 	public static void main (String [] args) throws Exception {
 
-		//noting the sytem start time to calculate running time
+		Charset.defaultCharset();
+        System.setProperty("file.encoding", "UTF-8");
+        
 
 		
 		//Welcome and help
@@ -93,7 +95,9 @@ static int fileWordsCount = 0;
 	// This is the Kwic main method. Reads a file and it's window size and provide output either on console or output file provided by the user.
 	void readFile(Path path, String searchString, int wordsLeft, int wordsRight, String outputFile)
 			throws IOException {
-				final float startTime = System.nanoTime();
+		
+		//noting the sytem start time to calculate running time
+		final float startTime = System.nanoTime();
 
 		
 		//need to write to file and preserving formatting (i.e. aligning keyword in different concordance sentences).
