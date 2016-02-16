@@ -130,7 +130,7 @@ static int fileWordsCount = 0;
                 text = line.toString();
 
            
-           text = text.replace("\n", "").replace("\r", "");//remove line breaks so the output can align on one line.
+           text = text.replace("\n", " ").replace("\r", " ");//remove line breaks so the output can align on one line.
            text = text.replaceAll("\\s+", " "); //remove leading, trailing and in between extra spaces.
            
                 //I decided to switch from using split(delimiters) to using BreakIterator as I believe it's much better in detecting text boundaries than split, as with the 
